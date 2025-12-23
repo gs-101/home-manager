@@ -2,12 +2,11 @@
 
 set -e
 
-# Install the systemd service file and ensure that the store path won't be
+# Install the Shepherd service file and ensure that the store path won't be
 # garbage-collected as long as it's installed.
-unit_path=/etc/systemd/system/non-nixos-gpu.service
-ln -sf @@resources@@/non-nixos-gpu.service "$unit_path"
-ln -sf "$unit_path" "@@statedir@@"/gcroots/non-nixos-gpu.service
+mkdir -p /etc/shepherd
+unit_path=/etc/shepherd/non-nixos-gpu.scm
+ln -sf @@resources@@/non-nixos-gpu.scm "$unit_path"
+ln -sf "$unit_path" "@@statedir@@"/gcroots/non-nixos-gpu.scm
 
-systemctl daemon-reload
-systemctl enable non-nixos-gpu.service
-systemctl restart non-nixos-gpu.service
+herd reload root /etc/shepherd/non-nixos-gpu.scm
