@@ -9,4 +9,4 @@ unit_path=/etc/shepherd/non-nixos-gpu.scm
 ln -sf @@resources@@/non-nixos-gpu.scm "$unit_path"
 ln -sf "$unit_path" "@@statedir@@"/gcroots/non-nixos-gpu.scm
 
-herd reload root /etc/shepherd/non-nixos-gpu.scm
+herd load root /etc/shepherd/non-nixos-gpu.scm
