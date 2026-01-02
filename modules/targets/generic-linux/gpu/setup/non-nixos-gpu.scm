@@ -5,7 +5,7 @@
    "Install GPU drivers for running GPU accelerated programs from Nix."
    #:start
    (make-forkexec-constructor
-    '("ln" "-nsf" "@@env@@" "/run/opengl-driver"))
+    '("/run/current-system/profile/bin/ln" "-nsf" "@@env@@" "/run/opengl-driver"))
    #:stop
    (make-kill-destructor)
    #:one-shot? #t))
